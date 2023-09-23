@@ -54,12 +54,16 @@ API_KEY=<API_KEY>
 
 ### Simple query
 
-![Simple Query](images/sksm-1.png)
+![Picture shows an image of a answer to a simple prompt](images/sksm-1.png)
 
 ### Generate a letter
 
-![Simple Query](images/sksm-2.png)
+![Picture shows the system finding a delinquent customer and writing a letter](images/sksm-2.png)
 
 ### Translation
 
-![Simple Query](images/sksm-3.png)
+![Picture shows an image of a text document being translated from English to Urdu](images/sksm-3.png)
+
+### Summarization and Risk Analysis
+
+![Picture shows a legal document being summarized and analyzed for risks.](images/sksm-4.png)
