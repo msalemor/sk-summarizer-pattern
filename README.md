@@ -1,6 +1,6 @@
 # An AOAI Summarizer implementation with Semantic Kernel
 
-A summarizer (Map Reduce/Refine) implementation using Semantic Kernel. This application can use the power of OpenAI GPT to summarize, translate, analyze risks, etc. a large text source. It was implemented is a an API, but with minor modifications the code could power larger ansyc jobs to process many files for example in a storage account. Summarization and RAG pattern could be combine into a powerful solution where users may want answers from multiple sources or deep answers from specific documents and sources.
+A summarizer (Map Reduce/Refine) implementation using Semantic Kernel. This application can use the power of OpenAI GPT to summarize, translate, analyze risks, etc. a large text source. It was implemented as an API, but with minor modifications, the code same code could power an ansyc job to process a large number of files for example in a storage account. Summarization and RAG pattern could be combined into a powerful solution where users may want answers from multiple sources or deep answers from specific documents and sources.
 
 ## Frontend
 
