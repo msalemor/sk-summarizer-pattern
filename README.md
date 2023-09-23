@@ -45,3 +45,5 @@ API_KEY=<API_KEY>
 
 - cd into `server` folder
 - Type: `make docker`
+
+**Note:** Make sure to provide the required server environment variables if running from somewhere else.
