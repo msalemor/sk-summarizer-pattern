@@ -103,11 +103,11 @@ app.MapPost("/api/summarize", async ([FromBody] SummarizeRequest request) =>
         prompt = request.prompt.Replace("<TEXT>", chunk);
         fixedFunction = kernel.CreateSemanticFunction(prompt, maxTokens: request.max_tokens, temperature: request.temperature);
 
-        // TODO: This could run in concurrently for increase perform, but doing it sequentially to spare resources
+        // TODO: This could run concurrently for increased performance, but doing it sequentially to spare resources
         // Keep a list of tasks: List<Task<SKContext>> tasks = new();
-        // Instead of await make it a task: tasks.Add(kernel.RunAsync(fixedFunction));
-        // Then Task.WhenAll(tasks)
-        // Finally get the results from each task: tasks[0].Result
+        // Instead of await run all tasks: tasks.Add(kernel.RunAsync(fixedFunction));
+        // Wait for all tasks to complete: Task.WhenAll(tasks)
+        // Get the results from all tasks: tasks[0].Result, tasks[1].Result, ...
 
         result = await kernel.RunAsync(fixedFunction);
         chunkCompletions.Add(result.ToString());
