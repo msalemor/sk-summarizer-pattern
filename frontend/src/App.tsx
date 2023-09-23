@@ -56,18 +56,18 @@ const App = () => {
       <nav className="bg-slate-900 text-white p-3 font-bold">
         SK Summarizer
       </nav>
-      <div className="p-2 text-white bg-slate-800 flex flex-row space-x-2">
-        <label className="font-bold text-sm uppercase">Text Chunk Size</label>
+      <div className="p-2 text-white bg-slate-800 flex flex-row space-x-2 items-center">
+        <label className="font-bold text-sm uppercase">Text Chunk Size (2.5k):</label>
         <input
           value={settings.chunk_size}
           onChange={(e) => setSettings({ ...settings, chunk_size: e.target.value })}
           className="px-1 text-black backdrop:border w-16 "></input>
-        <label className="font-bold text-sm uppercase">Max Tokens</label>
+        <label className="font-bold text-sm uppercase">Max Tokens (4k):</label>
         <input
           value={settings.max_tokens}
           onChange={(e) => setSettings({ ...settings, max_tokens: e.target.value })}
           className="px-1 text-black border w-16"></input>
-        <label className="font-bold text-sm uppercase">Temperature</label>
+        <label className="font-bold text-sm uppercase">Temperature (0.0-2.0):</label>
         <input
           value={settings.temperature}
           onChange={(e) => setSettings({ ...settings, temperature: e.target.value })}
