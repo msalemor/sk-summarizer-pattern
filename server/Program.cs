@@ -78,14 +78,23 @@ app.MapPost("/api/summarize", async ([FromBody] SummarizeRequest request) =>
     var prompt = string.Empty;
     ISKFunction? fixedFunction;
     SKContext? result;
+    var summaries = new List<Summary>();
 
-    if (request.chunk_size == 0 || request.temperature == 0 || request.max_tokens == 0)
+    if (request.chunk_size == 0 || request.temperature == 0 || request.max_tokens == 0 || string.IsNullOrEmpty(request.prompt))
     {
         return Results.BadRequest();
     }
 
     // Step 1: break text into chunks
     var chunks = ChunkText(request.content, request.chunk_size);
+
+    // Step 1.5: See if it is a simple prompt, if so just return the completion
+    if (string.IsNullOrEmpty(request.content))
+    {
+        fixedFunction = kernel.CreateSemanticFunction(request.prompt, maxTokens: request.max_tokens, temperature: request.temperature);
+        result = await kernel.RunAsync(fixedFunction);
+        return Results.Ok(new CompletionResponse(result.ToString(), summaries));
+    }
 
     // Step 2: apply the prompt to each chunk
     var chunkCompletions = new List<string>();
@@ -107,7 +116,8 @@ app.MapPost("/api/summarize", async ([FromBody] SummarizeRequest request) =>
     // If there's only one chunk, don't do further processing and return the result
     if (chunks.Count == 1)
     {
-        var summaries = new List<Summary>
+        summaries.Clear();
+        summaries = new List<Summary>
         {
             new(request.content, chunkCompletions[0])
         };
@@ -127,12 +137,13 @@ app.MapPost("/api/summarize", async ([FromBody] SummarizeRequest request) =>
     result = await kernel.RunAsync(fixedFunction);
 
     // Step 5: return the completion
-    var allSummaries = new List<Summary>();
+    summaries.Clear();
     for (var i = 0; i < chunks.Count; i++)
     {
-        allSummaries.Add(new(chunks[i], chunkCompletions[i]));
+        summaries.Add(new(chunks[i], chunkCompletions[i]));
     }
-    return Results.Ok(new CompletionResponse(result.ToString(), allSummaries));
+
+    return Results.Ok(new CompletionResponse(result.ToString(), summaries));
 });
 
 // Serve static files
