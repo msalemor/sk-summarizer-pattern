@@ -38,7 +38,7 @@ API_KEY=<API_KEY>
 ### Run a container locally with Docker
 
 - cd into the `server` folder
-- Type: `make run`
+- Type: `make docker-run`
 - Open a browser at: `http://localhost:8080`
 
 ### Build Docker Container
