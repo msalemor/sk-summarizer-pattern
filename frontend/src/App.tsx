@@ -67,7 +67,7 @@ const App = () => {
           value={settings.max_tokens}
           onChange={(e) => setSettings({ ...settings, max_tokens: e.target.value })}
           className="px-1 text-black border w-16"></input>
-        <label className="font-bold text-sm uppercase">Temperature (0.0-2.0):</label>
+        <label className="font-bold text-sm uppercase">Temperature (0.0 - 2.0):</label>
         <input
           value={settings.temperature}
           onChange={(e) => setSettings({ ...settings, temperature: e.target.value })}
