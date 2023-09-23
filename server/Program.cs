@@ -85,11 +85,10 @@ app.MapPost("/api/summarize", async ([FromBody] SummarizeRequest request) =>
         return Results.BadRequest();
     }
 
-    // Step 1: break text into chunks
-    var chunks = ChunkText(request.content, request.chunk_size);
-
-    // Step 1.5: See if it is a simple prompt, if so just return the completion
-    if (string.IsNullOrEmpty(request.content) || request.content.IndexOf("<TEXT>") == -1)
+    // Step 1: See if it is a simple prompt, if so just return the completion
+    // TODO: review logic when there's a template 
+    //   if (string.IsNullOrEmpty(request.content) || request.content.IndexOf("<TEXT>") == -1)
+    if (string.IsNullOrEmpty(request.content))
     {
         fixedFunction = kernel.CreateSemanticFunction(request.prompt, maxTokens: request.max_tokens, temperature: request.temperature);
         result = await kernel.RunAsync(fixedFunction);
@@ -97,6 +96,7 @@ app.MapPost("/api/summarize", async ([FromBody] SummarizeRequest request) =>
     }
 
     // Step 2: apply the prompt to each chunk
+    var chunks = ChunkText(request.content, request.chunk_size);
     var chunkCompletions = new List<string>();
     foreach (var chunk in chunks)
     {
@@ -142,7 +142,6 @@ app.MapPost("/api/summarize", async ([FromBody] SummarizeRequest request) =>
     {
         summaries.Add(new(chunks[i], chunkCompletions[i]));
     }
-
     return Results.Ok(new CompletionResponse(result.ToString(), summaries));
 });
 

@@ -11,6 +11,7 @@ reset-folder:
 
 run: reset-folder build-ui
 	@echo "Building UI..."
+	cp -r ../frontend/dist/* wwwroot
 	dotnet run .
 
 docker: reset-folder build-ui
@@ -23,3 +24,7 @@ docker: reset-folder build-ui
 
 docker-run: docker
 	docker run --rm -p 8080:80 --env-file=.env am8850/sksummarizer:dev
+
+docker-push: docker
+	@echo "Docker push..."
+	docker push am8850/sksummarizer:dev

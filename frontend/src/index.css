@@ -2,6 +2,54 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  h1 {
+    @apply text-4xl;
+    margin-bottom: 1rem;
+  }
+
+  h2 {
+    @apply text-3xl;
+    margin-bottom: 1rem;
+  }
+
+  h3 {
+    @apply text-2xl;
+    margin-bottom: 1rem;
+  }
+
+  h4 {
+    @apply text-xl;
+    margin-bottom: 1rem;
+  }
+
+  h4 {
+    @apply text-lg;
+    margin-bottom: 1rem;
+  }
+
+  table {
+    border-width: 0;
+    border-style: solid;
+    border-color: theme('borderColor.DEFAULT', currentColor);
+  }
+
+  p {
+    margin-bottom: 0.8rem;
+  }
+
+  strong {
+    @apply font-bold;
+  }
+
+  ol,
+  ul {
+    @apply list-disc;
+    margin-bottom: 0.8rem;
+    margin-left: 0.8rem;
+  }
+}
+
 /* :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
