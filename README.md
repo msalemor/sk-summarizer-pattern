@@ -4,9 +4,9 @@ This a summarizer (Map Reduce/Refine) implementation using Semantic Kernel and O
 
 I implemented this app as a C# Minimal API serving both static files and acting as an API server, but with minor modifications, the same code could power an async job to process a large number of files, for example, in a storage account.
 
-Summarizer is also a powerful playground. You don’t need to give it a large text source. It can reply to a simple prompt. However, if you do give it a large text source as a resource, you can accomplish pretty amazing things.
+Summarizer is also a powerful playground. You don’t need to give it a large text source. It can reply to a simple prompt. However, if you do give it a large text resource, you can accomplish pretty amazing tasks.
 
-Summarization and RAG pattern can be combined into a powerful solution where based on users' choices they could get answers from multiple sources using the RAG pattern or deep answers from specific documents and sources using summarization.
+Summarization and RAG pattern can be combined into a powerful solution where based on users' choices the system could answer from multiple sources using the RAG pattern or provide deep answers and insights from specific documents and sources using summarization.
 
 ## Frontend
 
