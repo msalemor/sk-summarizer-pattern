@@ -89,7 +89,7 @@ app.MapPost("/api/summarize", async ([FromBody] SummarizeRequest request) =>
     var chunks = ChunkText(request.content, request.chunk_size);
 
     // Step 1.5: See if it is a simple prompt, if so just return the completion
-    if (string.IsNullOrEmpty(request.content))
+    if (string.IsNullOrEmpty(request.content) || request.content.IndexOf("<TEXT>") == -1)
     {
         fixedFunction = kernel.CreateSemanticFunction(request.prompt, maxTokens: request.max_tokens, temperature: request.temperature);
         result = await kernel.RunAsync(fixedFunction);

@@ -49,3 +49,17 @@ API_KEY=<API_KEY>
 - Type: `make docker`
 
 **Note:** Make sure to provide the required server environment variables if running from somewhere else.
+
+## Samples
+
+### Simple query
+
+![Simple Query](images/sksm-1.png)
+
+### Generate a letter
+
+![Simple Query](images/sksm-2.png)
+
+### Translation
+
+![Simple Query](images/sksm-3.png)
