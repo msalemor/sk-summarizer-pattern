@@ -19,6 +19,16 @@ Summarization and RAG pattern can be combined into a powerful solution where bas
 - Static Files
 - Semantic Kernel
 
+## Required server environment variables
+
+On the `server` folder, you will need to create a `.env` file and add the following values:
+
+```bash
+DEPLOYMENT_NAME=<MODEL_NAME>
+ENDPOINT=https://<NAME>.openai.azure.com/
+API_KEY=<API_KEY>
+```
+
 ### Running locally
 
 - cd into the `server` folder
