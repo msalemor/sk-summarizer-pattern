@@ -52,15 +52,15 @@ API_KEY=<API_KEY>
 
 ## Samples
 
-### Simple query
+### Process a simple query
 
 ![Picture shows an image of a answer to a simple prompt](images/sksm-1.png)
 
-### Generate a letter
+### Content generation
 
 ![Picture shows the system finding a delinquent customer and writing a letter](images/sksm-2.png)
 
-### Translation
+### Text translation
 
 ![Picture shows an image of a text document being translated from English to Urdu](images/sksm-3.png)
 
