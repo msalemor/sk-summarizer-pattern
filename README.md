@@ -21,17 +21,17 @@ Summarization and RAG pattern can be combined into a powerful solution where bas
 
 ### Running locally
 
-- Change to the `server` folder
+- cd into the `server` folder
 - Type: `make run`
 - Open a browser at: `http://localhost:5084`
 
 ### Run a container locally with Docker
 
-- Change into the `server` folder
+- cd into the `server` folder
 - Type: `make run`
 - Open a browser at: `http://localhost:8080`
 
 ### Build Docker Container
 
-- Change into the `server` folder
+- cd into `server` folder
 - Type: `make docker`
