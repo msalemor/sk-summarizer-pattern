@@ -10,20 +10,27 @@ Summarization and RAG pattern can be combined into a powerful solution where bas
 
 ## Frontend
 
-- Bun
+**Note:** I've kept most of the code in the `frontend/src/App.tsx`` file for simpler understanding.
+
+- Bun javascript runtime and all-in-one tool
 - React
-- Axios
-- React-markdown
+  - Axios
+  - React-markdown
+- TailwindCSS
 
 ## Server
 
 - .NET 7 C# Minimal API
-- Static Files
-- Semantic Kernel
+- Semantic Kernel (still in Preview)
+- Middleware:
+  - Static Files
+  - CORS
 
-## Required server environment variables
+## Required Server environment variables
 
-On the `server` folder, you will need to create a `.env` file and add the following values:
+**Note:** To ge these values, you will need an Azure OpenAI account and deploy a GPT model to a region.
+
+On the `server` folder, you will need to create a `.env` file and set the following values:
 
 ```bash
 DEPLOYMENT_NAME=<MODEL_NAME>
@@ -45,12 +52,12 @@ API_KEY=<API_KEY>
 
 ### Building a Docker Container
 
+**Note:** Make sure to provide the required server environment variables if running from somewhere else.
+
 - cd into `server` folder
 - Type: `make docker`
 
-**Note:** Make sure to provide the required server environment variables if running from somewhere else.
-
-## Samples
+## Samples use cases
 
 ### Process a simple query
 
