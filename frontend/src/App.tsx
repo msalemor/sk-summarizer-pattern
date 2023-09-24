@@ -6,7 +6,6 @@
 import axios from "axios"
 import { useState } from "react"
 import ReactMarkdown from 'react-markdown'
-import remarkGfm from 'remark-gfm'
 
 const Settings = {
   chunk_size: "1000",
@@ -114,7 +113,7 @@ const App = () => {
                 value={outText}
                 className="p-2 border rounded bg-slate-300" rows={10} readOnly></textarea> */}
               <div className=' bg-slate-300 p-2 round-xl'>
-                <ReactMarkdown children={outText} remarkPlugins={[remarkGfm]} />
+                <ReactMarkdown children={outText} />
               </div>
             </> : <>
               <label className="bg-slate-300 p-2 text-sm uppercase">{status}</label>
