@@ -1,4 +1,4 @@
-# An Azure OpenAI Summarizer implementation<br/>with Semantic Kernel
+# An Azure OpenAI Summarizer implementation <br/>with Semantic Kernel
 
 Check out my new repo where I have implemented a summarizer (Map Reduce/Refine) implementation using Semantic Kernel and OpenAI GPT. Summarizer may not express well everything this application can do. It really uses the GPT's foundational model abilities to summarize, translate, perform risk analysis, generate content such as code and demand letters, etc.
 
