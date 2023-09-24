@@ -71,6 +71,10 @@ API_KEY=<API_KEY>
 
 ![Picture shows an image of a text document being translated from English to Urdu](images/sksm-3.png)
 
+### Summarization
+
+![Picture shows of a document being summarized.](images/sksm-4.png)
+
 ### Summarization and risk analysis
 
-![Picture shows a legal document being summarized and analyzed for risks.](images/sksm-4.png)
+![Picture shows a legal document being summarized and analyzed for risks.](images/sksm-5.png)
