@@ -63,7 +63,7 @@ API_KEY=<API_KEY>
 
 ![Picture shows an image of a answer to a simple prompt](images/sksm-1.png)
 
-### Content generation
+### Analyzis and content generation
 
 ![Picture shows the system finding a delinquent customer and writing a letter](images/sksm-2.png)
 
