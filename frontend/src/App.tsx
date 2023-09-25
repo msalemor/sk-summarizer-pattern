@@ -112,12 +112,12 @@ const App = () => {
             {summaries.length > 0 ? <>
               {summaries.map((chunkSummary, idx) => <div key={idx} className="flex flex-col w-full border rounded-md mb-2">
                 <div className="p-1 flex flex-col bg-teal-50">
-                  <label className="bg-slate-800 text-white text-sm font-semibold uppercase">Chunk text - {idx}</label>
+                  <label className="bg-slate-800 text-white text-sm font-semibold uppercase">Chunk text - {idx + 1}</label>
                   <hr />
                   {chunkSummary.content}
                 </div>
                 <div className="p-1 flex flex-col bg-teal-100">
-                  <label className="bg-slate-800 text-white text-sm font-semibold uppercase">Summary - {idx}</label>
+                  <label className="bg-slate-800 text-white text-sm font-semibold uppercase">Summary - {idx + 1}</label>
                   <hr />
                   {chunkSummary.summary}</div>
               </div>)}
