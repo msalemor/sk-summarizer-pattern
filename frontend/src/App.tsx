@@ -30,6 +30,7 @@ const App = () => {
   const [prompt, setPrompt] = useState(DEFAULT_TEMPLATE)
   const [outText, setOutText] = useState("")
   const [summaries, setSummaries] = useState<ISummary[]>([])
+  const [chunk, _] = useState(true)
 
   const Clear = () => {
     setInText("")
@@ -47,7 +48,8 @@ const App = () => {
       content: inText,
       chunk_size: settings.chunk_size ?? 1000,
       max_tokens: settings.max_tokens ?? 2000,
-      temperature: settings.temperature ?? 0.3
+      temperature: settings.temperature ?? 0.3,
+      chunk
     };
     try {
       const resp = await axios.post(URI, payload)
@@ -82,7 +84,7 @@ const App = () => {
           onChange={(e) => setSettings({ ...settings, temperature: e.target.value })}
           className="px-1 text-black border w-16"></input>
       </div>
-      <main className="container mx-auto flex flex-col space-y-3">
+      <main className="p-2 flex flex-col space-y-3">
         <label className="font-bold text-sm uppercase">Prompt</label>
         <textarea
           value={prompt}
@@ -98,14 +100,31 @@ const App = () => {
         </div>
         <div className="flex flex-row">
           {/* input */}
-          <div className="flex flex-col w-1/2 p-2">
+          <div className={"flex flex-col p-2 " + (summaries.length > 1 ? "w-1/3" : "w-1/2")}>
             <label className="font-bold text-sm uppercase">Text Resource (Tokens: {inText.split(' ').length})</label>
             <textarea
               value={inText}
               onChange={(e) => setInText(e.target.value)}
               className="p-2 border rounded" rows={30}></textarea>
           </div>
-          <div className="flex flex-col w-1/2 p-2">
+          <div className={"flex flex-col p-2 " + (summaries.length > 1 ? "w-1/3" : "hidden")}>
+            <label className="font-bold text-sm uppercase">Chunk Details (Chunks: {summaries.length})</label>
+            {summaries.length > 0 ? <>
+              {summaries.map((chunkSummary, idx) => <div key={idx} className="flex flex-col w-full border rounded-md mb-2">
+                <div className="p-1 flex flex-col bg-teal-50">
+                  <label className="bg-slate-800 text-white text-sm font-semibold uppercase">Chunk text - {idx}</label>
+                  <hr />
+                  {chunkSummary.content}
+                </div>
+                <div className="p-1 flex flex-col bg-teal-100">
+                  <label className="bg-slate-800 text-white text-sm font-semibold uppercase">Summary - {idx}</label>
+                  <hr />
+                  {chunkSummary.summary}</div>
+              </div>)}
+            </> : <>
+            </>}
+          </div>
+          <div className={"flex flex-col p-2 " + (summaries.length > 1 ? "w-1/3" : "w-1/2")}>
             {/* output */}
             <label className="font-bold text-sm uppercase">Summary (Chunks: {summaries.length})</label>
             {outText ? <>

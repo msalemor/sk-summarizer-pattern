@@ -95,8 +95,17 @@ app.MapPost("/api/summarize", async ([FromBody] SummarizeRequest request) =>
         return Results.Ok(new CompletionResponse(result.ToString(), summaries));
     }
 
+    if (!request.chunk)
+    {
+        prompt = request.prompt.Replace("<TEXT>", request.content);
+        fixedFunction = kernel.CreateSemanticFunction(prompt, maxTokens: request.max_tokens, temperature: request.temperature);
+        result = await kernel.RunAsync(fixedFunction);
+        return Results.Ok(new CompletionResponse(result.ToString(), summaries));
+    }
+
     // Step 2: apply the prompt to each chunk
     var chunks = ChunkText(request.content, request.chunk_size);
+
     var chunkCompletions = new List<string>();
     foreach (var chunk in chunks)
     {
@@ -154,7 +163,7 @@ app.Run();
 
 #region Models
 
-record SummarizeRequest(string prompt, string content, int chunk_size, int max_tokens, double temperature);
+record SummarizeRequest(string prompt, string content, int chunk_size, int max_tokens, double temperature, bool chunk = true);
 record CompletionResponse(string content, List<Summary> summaries);
 record Summary(string content, string summary);
 
