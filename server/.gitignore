@@ -1,5 +1,0 @@
-bin
-obj
-.env
-wwwroot/*
-*.bak

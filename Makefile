@@ -22,7 +22,7 @@ run-py: build-ui
 	@echo "Building UI..."	
 	cd src/pybackend && uvicorn main:app
 
-TAG=0.0.3
+TAG=0.0.4
 docker: build-ui
 	@echo "Docker build..."
 	cd server && docker build . -t am8850/sksummarizer:${TAG}
