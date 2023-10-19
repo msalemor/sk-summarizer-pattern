@@ -1,0 +1,11 @@
+POST http://127.0.0.1:5084/api/summarize HTTP/1.1
+Content-Type: application/json
+
+{
+  "prompt":"Summarize the following content. List all risk items.\n\n\nText:\"\"\"\n<TEXT>\n\"\"\"\n",
+  "content": "Azure API Management is a powerful service offered by Microsoft Azure that allows organizations to create, publish, and manage APIs easily. Whether you're providing APIs to external partners or managing internal APIs for your organization, Azure API Management can simplify the process and provide essential security and analytics features. However, like any technology deployment, there are risks and challenges involved. In this blog post, we'll explore how to deploy Azure API Management, the potential risks you may encounter, and the action items to mitigate these risks effectively.",
+  "sentence_size":100,
+  "chunk_size":1000,
+  "max_tokens": 1500,
+  "temperature": 0.3
+}
