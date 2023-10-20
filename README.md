@@ -10,7 +10,7 @@ Summarization and RAG pattern can be combined into a powerful solution where bas
 
 ## Frontend
 
-**Note:** I've kept most of the code in the `frontend/src/App.tsx`` file for simpler understanding.
+**Note:** I've kept most of the code in the `src/frontend/src/App.tsx`` file for simpler understanding.
 
 - Bun javascript runtime and all-in-one tool
 - React
@@ -18,7 +18,7 @@ Summarization and RAG pattern can be combined into a powerful solution where bas
   - React-markdown
 - TailwindCSS
 
-## Server
+## C# Backend
 
 - .NET 7 C# Minimal API
 - Semantic Kernel (still in Preview)
@@ -26,11 +26,22 @@ Summarization and RAG pattern can be combined into a powerful solution where bas
   - Static Files
   - CORS
 
+## Python Backend
+
+Requirements: `requirements.txt`
+
+```txt
+fastapi
+uvicorn[standard]
+semantic-kernel
+python-dotenv
+```
+
 ## Required Server environment variables
 
 **Note:** To ge these values, you will need an Azure OpenAI account and deploy a GPT model to a region.
 
-On the `server` folder, you will need to create a `.env` file and set the following values:
+On the `src/backend` and `src/pybackend` folders, you will need to create a `.env` file and set the following values:
 
 ```bash
 DEPLOYMENT_NAME=<MODEL_NAME>
@@ -40,21 +51,34 @@ API_KEY=<API_KEY>
 
 ### Running locally
 
-- cd into the `server` folder
+From a Bash/zsh prompt type the following commands:
+
+### CSharp
+
 - Type: `make run`
 - Open a browser at: `http://localhost:5084`
 
+#### Python
+
+- Type: `make run-py`
+- Open a browser at: `http://localhost:8000`
+
 ### Run as a container locally using Docker
 
-- cd into the `server` folder
+#### CSharp
+
 - Type: `make docker-run`
+- Open a browser at: `http://localhost:8080`
+
+#### Python
+
+- Type: `make docker-py-run`
 - Open a browser at: `http://localhost:8080`
 
 ### Building a Docker Container
 
 **Note:** Make sure to provide the required server environment variables if running from somewhere else.
 
-- cd into `server` folder
 - Type: `make docker`
 
 ## Samples use cases
