@@ -7,7 +7,7 @@ from fastapi.staticfiles import StaticFiles
 import semantic_kernel as sk
 import semantic_kernel.text as text
 from semantic_kernel.connectors.ai.open_ai import AzureChatCompletion
-import StringBuilder
+
 
 from dotenv import load_dotenv
 import os

@@ -24,6 +24,11 @@ interface ISummary {
   summary: string
 }
 
+interface IResponse {
+  content: string,
+  summaries: ISummary[]
+}
+
 const App = () => {
 
   const [status, setStatus] = createSignal(DEFAULT_MSG)
@@ -57,7 +62,7 @@ const App = () => {
       chunk: chunk()
     };
     try {
-      const resp = await axios.post(URI, payload)
+      const resp = await axios.post<IResponse>(URI, payload)
       const data = resp.data
       console.info(data)
       setOutText([data.content])
@@ -93,7 +98,7 @@ const App = () => {
           class="px-1 text-black border w-16"></input>
       </div>
       <main class="mx-10 p-2 flex flex-col space-y-3">
-        <label class="font-bold text-sm uppercase">Prompt - <span>{encode(prompt() + inText()).length}</span></label>
+        <label class="font-bold text-sm uppercase">Prompt (<span>{encode(prompt() + inText()).length})</span></label>
         <textarea
           value={prompt()}
           onChange={(e) => setPrompt(e.target.value)}
@@ -115,16 +120,16 @@ const App = () => {
         </div>
         <div class="flex flex-row">
           {/* input */}
-          <div class={"flex flex-col p-2 " + (summaries.length > 1 ? "w-1/3" : "w-1/2")}>
+          <div class={"flex flex-col p-2 " + (summaries().length > 1 ? "w-1/3" : "w-1/2")}>
             <label class="font-bold text-sm uppercase">Text Resource (Tokens: {inText().split(' ').length})</label>
             <textarea
               value={inText()}
               onChange={(e) => setInText(e.target.value)}
               class="p-2 border rounded" rows={30}></textarea>
           </div>
-          <div class={"flex flex-col p-2 " + (summaries.length > 1 ? "w-1/3" : "hidden")}>
-            <label class="font-bold text-sm uppercase">Chunk Details (Chunks: {summaries.length})</label>
-            {summaries.length > 0 ? <>
+          <div class={"flex flex-col p-2 " + (summaries().length > 1 ? "w-1/3" : "hidden")}>
+            <label class="font-bold text-sm uppercase">Chunk Details (Chunks: {summaries().length})</label>
+            {summaries().length > 0 ? <>
               <For each={summaries()}>{(chunkSummary, idx) =>
                 <div class="flex flex-col w-full border rounded-md mb-2">
                   <div class="p-1 flex flex-col bg-teal-50">
@@ -142,9 +147,9 @@ const App = () => {
             </> : <>
             </>}
           </div>
-          <div class={"flex flex-col p-2 " + (summaries.length > 1 ? "w-1/3" : "w-1/2")}>
+          <div class={"flex flex-col p-2 " + (summaries().length > 1 ? "w-1/3" : "w-1/2")}>
             {/* output */}
-            <label class="font-bold text-sm uppercase">Summary (Chunks: {summaries.length})</label>
+            <label class="font-bold text-sm uppercase">Summary (Chunks: {summaries().length})</label>
             {outText ? <>
               {/* <textarea
                 value={outText}
