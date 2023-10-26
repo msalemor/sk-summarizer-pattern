@@ -26,7 +26,7 @@ Summarization and RAG pattern can be combined into a powerful solution where bas
   - Static Files
   - CORS
 
-## Python Backend
+## Python Semantic Kernel Backend
 
 Requirements: `requirements.txt`
 
@@ -34,6 +34,17 @@ Requirements: `requirements.txt`
 fastapi
 uvicorn[standard]
 semantic-kernel
+python-dotenv
+```
+
+## Python LangChain Backend
+
+Requirements: `requirements.txt`
+
+```txt
+fastapi
+uvicorn[standard]
+langchain
 python-dotenv
 ```
 
@@ -58,9 +69,14 @@ From a Bash/zsh prompt type the following commands:
 - Type: `make run`
 - Open a browser at: `http://localhost:5084`
 
-#### Python
+#### Python SK
 
 - Type: `make run-py`
+- Open a browser at: `http://localhost:8000`
+
+#### Python SK
+
+- Type: `make run-pylang`
 - Open a browser at: `http://localhost:8000`
 
 ### Run as a container locally using Docker
@@ -70,9 +86,14 @@ From a Bash/zsh prompt type the following commands:
 - Type: `make docker-run`
 - Open a browser at: `http://localhost:8080`
 
-#### Python
+#### Python SK
 
 - Type: `make docker-py-run`
+- Open a browser at: `http://localhost:8080`
+
+#### Python LangChain
+
+- Type: `make docker-pylang-run`
 - Open a browser at: `http://localhost:8080`
 
 ### Building a Docker Container
