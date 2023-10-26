@@ -117,33 +117,3 @@ async def post_summary(request: SummarizeRequest):
     return {"content": str(result), "summaries": summaries}
 
 app.mount("/", StaticFiles(directory="wwwroot", html=True), name="static")
-
-
-# result = model(
-#     [
-#         HumanMessage(
-#             content="Translate this sentence from English to French. I love programming."
-#         )
-#     ]
-# )
-# print(result.content)
-# class CommaSeparatedListOutputParser(BaseOutputParser):
-#     """Parse the output of an LLM call to a comma-separated list."""
-
-#     def parse(self, text: str):
-#         """Parse the output of an LLM call."""
-#         return text.strip().split(", ")
-
-
-# template = """You are a helpful assistant who generates comma separated lists.
-# A user will pass in a category, and you should generate 5 objects in that category in a comma separated list.
-# ONLY return a comma separated list, and nothing more."""
-# human_template = "{text}"
-
-# chat_prompt = ChatPromptTemplate.from_messages([
-#     ("system", template),
-#     ("human", human_template),
-# ])
-
-# chain = chat_prompt | model() | CommaSeparatedListOutputParser()
-# chain.invoke({"text": "colors"})
