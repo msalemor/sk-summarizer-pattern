@@ -57,9 +57,11 @@ def call_llm(request: SummarizeRequest) -> str:
     )
 
     if not request.content:
-        prompt_template = request.prompt
+        PROMPT = PromptTemplate(
+            template=request.prompt+"{input}", input_variables=["input"]
+        )
         chain = LLMChain(llm=llm, prompt=PROMPT)
-        result = chain.invoke()
+        result = chain.invoke({"input": ""})
         return result['text']
 
     if request.content:
