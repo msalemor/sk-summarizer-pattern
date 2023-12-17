@@ -39,7 +39,7 @@ run-pylang: build-ui
 	@echo "Building UI..."	
 	cd src/pylangbackend && $(PYTHON_RUN)
 
-DOCKER_TAG=0.0.6
+DOCKER_TAG=0.0.7
 docker: build-ui
 	@echo ".NET build..."
 	cd src/backend && docker build . -t am8850/sksummarizer:$(DOCKER_TAG)
