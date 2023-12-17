@@ -77,10 +77,10 @@ const App = () => {
 
   return (
     <>
-      <nav class="bg-purple-950 text-white p-3 font-bold">
+      <nav class="bg-purple-950 text-white p-3 font-bold h-[50px]">
         SK Summarizer
       </nav>
-      <div class="p-2 text-white bg-purple-900 flex flex-row space-x-2 items-center">
+      <div class="p-2 text-white bg-purple-900 flex flex-row space-x-2 items-center h-[50px]">
         <label class="font-bold text-sm uppercase">Text Chunk Size (2.5k):</label>
         <input
           value={settings().chunk_size}
@@ -154,7 +154,7 @@ const App = () => {
               {/* <textarea
                 value={outText}
                 class="p-2 border rounded bg-slate-300" rows={10} readOnly></textarea> */}
-              <div class=' bg-slate-300 p-2 round-xl'>
+              <div class=' bg-slate-300 p-2 round-xl overflow-auto'>
                 {/* {outText()} */}
                 <For each={outText()}>{(text) =>
                   <SolidMarkdown children={text} />

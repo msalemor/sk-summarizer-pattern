@@ -4,7 +4,6 @@ DOTNET_RUN=dotnet watch run
 PYTHON_APP=main:app
 PYTHON_RUN=uvicorn $(PYTHON_APP)
 BUN_BUILD=bun run build
-DOCKER_TAG=0.0.4
 NET_WWW_FOLDER=src/backend/wwwroot
 PY_WWW_FOLDER=src/pybackend/wwwroot
 PYLANG_WWW_FOLDER=src/pylangbackend/wwwroot
@@ -40,6 +39,7 @@ run-pylang: build-ui
 	@echo "Building UI..."	
 	cd src/pylangbackend && $(PYTHON_RUN)
 
+DOCKER_TAG=0.0.6
 docker: build-ui
 	@echo ".NET build..."
 	cd src/backend && docker build . -t am8850/sksummarizer:$(DOCKER_TAG)
