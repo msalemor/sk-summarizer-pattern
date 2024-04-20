@@ -1,17 +1,18 @@
-import { makePersisted } from "@solid-primitives/storage";
-import axios from "axios";
-import { For, createSignal } from "solid-js";
-import SolidMarkdown from "solid-markdown";
-// import {
-//   encode,
-// } from 'gpt-tokenizer'
+import { makePersisted } from '@solid-primitives/storage'
+import { createSignal, For } from 'solid-js'
+import { Spinner, SpinnerType } from 'solid-spinner'
+import { SolidMarkdown } from 'solid-markdown'
+
+// import solidLogo from './assets/solid.svg'
+// import viteLogo from '/vite.svg'
+// import './App.css'
+//import { Spinner, SpinnerType } from 'solid-spinner'
 
 const Settings = {
   chunk_size: "1000",
   max_tokens: "2000",
   temperature: "0.3"
 }
-import { Spinner, SpinnerType } from 'solid-spinner'
 
 const URI = "api/summarize"
 const DEFAULT_MSG = "Please enter a prompt or a prompt template above, enter optional input text, and click Process"
@@ -29,8 +30,7 @@ interface IResponse {
   summaries: ISummary[]
 }
 
-const App = () => {
-
+function App() {
   const [status, setStatus] = createSignal(DEFAULT_MSG)
   const [settings, setSettings] = makePersisted(createSignal(Settings))
   const [inText, setInText] = makePersisted(createSignal(SampleData))
@@ -41,39 +41,21 @@ const App = () => {
   const [chunk, _] = createSignal(true)
   const [processing, setProcessing] = createSignal(false)
 
-  const Clear = () => {
-    setInText("")
-    setOutText([])
-    setSummaries([])
-    setStatus(DEFAULT_MSG)
-  }
 
-  const Process = async () => {
-    setProcessing(true)
+  const Process = () => {
+    setStatus("Processing...")
     setOutText([])
     setSummaries([])
-    setStatus("Processing...")
-    const payload = {
-      prompt: prompt(),
+    const chunkStat = chunk()
+    console.info("Processing chunk: ", chunkStat)
+    let test: IResponse = {
       content: inText(),
-      chunk_size: parseInt(settings().chunk_size) ?? 1000,
-      max_tokens: parseInt(settings().max_tokens) ?? 2000,
-      temperature: parseFloat(settings().temperature) ?? 0.3,
-      chunk: chunk()
-    };
-    try {
-      const resp = await axios.post<IResponse>(URI, payload)
-      const data = resp.data
-      console.info(data)
-      setOutText([data.content])
-      setSummaries(data.summaries)
-      setStatus(DEFAULT_MSG)
-    } catch (err) {
-      setStatus(ERROR_MSG)
-    } finally {
-      setProcessing(false)
+      summaries: []
     }
+    console.info("Processing: ", test, URI, ERROR_MSG)
+    setProcessing(true)
   }
+  const Clear = () => { }
 
   return (
     <>

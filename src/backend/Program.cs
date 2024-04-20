@@ -5,6 +5,7 @@ using Microsoft.SemanticKernel;
 using Microsoft.SemanticKernel.Orchestration;
 using Microsoft.SemanticKernel.SkillDefinition;
 using Microsoft.SemanticKernel.Text;
+using Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -161,10 +162,3 @@ app.MapFallbackToFile("index.html");
 
 app.Run();
 
-#region Models
-
-record SummarizeRequest(string prompt, string content, int chunk_size, int max_tokens, double temperature, bool chunk = true);
-record CompletionResponse(string content, List<Summary> summaries);
-record Summary(string content, string summary);
-
-#endregion
